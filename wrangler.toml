@@ -1,0 +1,27 @@
+name = "holder-value-ranking"
+main = "worker/index.ts"
+compatibility_date = "2024-01-01"
+
+# Static assets (frontend)
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+
+# KV Namespace for storage
+[[kv_namespaces]]
+binding = "KV"
+id = "YOUR_KV_NAMESPACE_ID"
+
+# Cron trigger for daily ranking updates
+[triggers]
+crons = ["0 0 * * *"]  # Every day at midnight UTC
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+TREASURY_ABSTRACT = "0x60Df4E186364c3a49A550Aee29Da1d5fe3658818"
+TREASURY_SOLANA = "4WN59xCyUtbnCR1MgTZHiG8XLDNGrKm9FfXAQp7soqrr"
+
+# Secrets (set via wrangler secret put)
+# HMAC_SECRET - for signing session tokens
+# SOLANA_FEE_PAYER - private key for Solana transaction fees
